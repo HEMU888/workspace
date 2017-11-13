@@ -30,6 +30,15 @@
 	<a href="login-ui.do">Login UI</a>
 	<br>
 	<a href="testResult.do?number=5">testResult</a>
+	
+	<a href="UserAction-save">save</a>
+	<br><br>
+	<a href="UserAction-update">update</a>
+	<br><br>
+	<a href="UserAction-delete">delete</a>
+	<br><br>
+	<a href="UserAction-query">query</a>
+	<br><br>
 
 </body>
 </html>
