@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+
+	<constant name="struts.action.extension" value="action,do"></constant>
+
+	<package name="helloworld" extends="struts-default">
+		<action name="product-input">
+			<result>/WEB-INF/pages/input.jsp</result>
+		</action>
+
+		<action name="product-save" class="com.hemu.test.Product" method="save">
+			<result name="details" >/WEB-INF/pages/details.jsp</result>
+		</action>
+
+		<action name="TestActionContext" class="com.hemu.test.TestActionContextAction" method="execute">
+			<result>/test-actionContext.jsp</result>
+		</action>
+
+		<action name="TestAware" class="com.hemu.test.TestAwareAction">
+			<result>/test-aware.jsp</result>
+		</action>
+
+		<action name="TestServletActionContext" class="com.hemu.test.TestServletActionContextAction">
+			<result>/success.jsp</result>
+		</action>
+
+		<action name="TestServletAwareAction" class="com.hemu.test.TestServletAwareAction">
+			<result>/success.jsp</result>
+		</action>
+
+		<action name="login-ui">
+			<result>/login.jsp</result>
+		</action>
+
+		<action name="user-login" class="com.hemu.test.UserAction">
+			<result name="login-success">/login-success.jsp</result>
+		</action>
+
+		<action name="user-logout" class="com.hemu.test.UserAction" method="logout">
+			<result name="logout-success">/login.jsp</result>
+		</action>
+
+		<action name="testResult" class="com.hemu.test.TestResultAction">
+			<result name="success">/success.jsp</result>
+			<result name="login">/login.jsp</result>
+			<result name="index">/index.jsp</result>
+		</action>
+	</package>
+	
+	<package name="index" extends="struts-default">
+    		<action name="UserAction-*" class="com.hemu.test.UserAction" method="{1}">
+    			<result name="success-{1}">/success.jsp</result>
+    		</action>
+    		<!--  
+    		<action name="UserAction-update" class="com.hemu.test.UserAction" method="update">
+    			<result name="update">/success.jsp</result>
+    		</action>
+    		<action name="UserAction-delete" class="com.hemu.test.UserAction" method="delete">
+    			<result name="delete">/success.jsp</result>
+    		</action>
+    		<action name="UserAction-query" class="com.hemu.test.UserAction" method="query">
+    			<result name="query">/success.jsp</result>
+    		</action>
+    		-->
+    </package>
+
+</struts>
