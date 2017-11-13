@@ -60,6 +60,7 @@ public class UserAction implements SessionAware,ApplicationAware {
 		this.application = arg0;
 	}
 	
+	
 	public String save() {
 		System.out.println("save");
 		return "success-save";
