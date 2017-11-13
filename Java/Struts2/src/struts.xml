@@ -7,7 +7,9 @@
 
 
 	<constant name="struts.action.extension" value="action,do,,"></constant>
-
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	
+	
 	<package name="helloworld" extends="struts-default" >
 		<action name="product-input">
 			<result>/WEB-INF/pages/input.jsp</result>
@@ -65,6 +67,10 @@
     			<result name="query">/success.jsp</result>
     		</action>
     		-->
+    		
+    		<action name="testDynamicMethodInvocation" class="com.hemu.test.TestDynamicMethodInvocationAction" method="save">
+    			<result>/success.jsp</result>
+    		</action>
 	</package>
 	
 

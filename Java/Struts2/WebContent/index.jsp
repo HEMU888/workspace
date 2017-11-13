@@ -38,8 +38,9 @@
 	<br><br>
 	<a href="UserAction-delete.do">delete</a>
 	<br><br>
-	<a href="UserAction-query.do">query</a>
+	<a href="UserAction-query">query</a>
 	<br><br>
+	<a href="testDynamicMethodInvocation">Test DynamicMethodInvocation</a>
 
 </body>
 </html>
