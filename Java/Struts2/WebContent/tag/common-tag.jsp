@@ -16,13 +16,11 @@
 	<br>
 	<s:property value="#parameters.name[0]" />
 	<br>
-
 	<s:url value="/testUrl" var="url">
 	<!--对value值自动解析  -->
 		<s:param name="productId" value="productId"></s:param>
 	</s:url>
 	${url }
-
 	<br>
 	<s:url value="/testUrl" var="url2">
 	<!--对value值不自动解析  -->
