@@ -7,17 +7,18 @@
 
 
 	<constant name="struts.action.extension" value="action,do,,"></constant>
+	<!-- 打开动态调用方法开关 -->
 	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
-	
-	
+	<!-- 打开静态调用限制  -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value = "true"></constant>
+
+
 	<package name="helloworld" extends="struts-default" >
 		<action name="product-input">
 			<result>/WEB-INF/pages/input.jsp</result>
 		</action>
 
-		<action name="product-save" class="com.hemu.test.Product" method="save">
-			<result name="details" >/WEB-INF/pages/details.jsp</result>
-		</action>
+
 
 		<action name="TestActionContext" class="com.hemu.test.TestActionContextAction" method="execute">
 			<result>/test-actionContext.jsp</result>
@@ -47,16 +48,23 @@
 			<result name="logout-success">/login.jsp</result>
 		</action>
 
+
+
+	</package>
+
+
+	<package name="tongpeifu" extends="struts-default">
+
 		<action name="testResult" class="com.hemu.test.TestResultAction">
 			<result name="success">/success.jsp</result>
 			<result name="login">/login.jsp</result>
 			<result name="index">/index.jsp</result>
 		</action>
-		
+
 		<action name="UserAction-*" class="com.hemu.test.UserAction" method="{1}">
     			<result name="success-{1}">/success.jsp</result>
     		</action>
-    		<!--  
+    		<!--
     		<action name="UserAction-update" class="com.hemu.test.UserAction" method="update">
     			<result name="update">/success.jsp</result>
     		</action>
@@ -67,11 +75,36 @@
     			<result name="query">/success.jsp</result>
     		</action>
     		-->
-    		
+
     		<action name="testDynamicMethodInvocation" class="com.hemu.test.TestDynamicMethodInvocationAction" method="save">
     			<result>/success.jsp</result>
-    		</action>
+    	</action>
 	</package>
-	
+
+	<package name="ONGL" extends="struts-default">
+
+	<!-- 全局exception設定  -->
+		<global-results>
+			<result name="input">/OGNL/input.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="input" exception="java.lang.ArithmeticException"></exception-mapping>
+		</global-exception-mappings>
+
+
+		<action name="product-save" class="com.hemu.OGNL.ProductOGNL" method="save">
+		<!-- 局部exception設定  -->
+			<exception-mapping result="input" exception="java.lang.ArithmeticException"></exception-mapping>
+			<result name="input">/OGNL/input.jsp</result>
+			<result name="details" >/OGNL/details.jsp</result>
+		</action>
+	</package>
+
+	<package name="TAG" extends="struts-default">
+		<action name="TestTag" class="com.hemu.OGNL.ProductOGNL" method="testTag">
+			<result>/tag/common-tag.jsp</result>
+		</action>
+	</package>
+
 
 </struts>
