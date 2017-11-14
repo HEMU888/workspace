@@ -31,7 +31,7 @@
 	<br>
 	<a href="testResult.do?number=5">testResult</a>
 	<br>
-	
+
 	<a href="UserAction-save.do">save</a>
 	<br><br>
 	<a href="UserAction-update.do">update</a>
@@ -41,6 +41,8 @@
 	<a href="UserAction-query">query</a>
 	<br><br>
 	<a href="testDynamicMethodInvocation">Test DynamicMethodInvocation</a>
+	<br>
+	<a href="TestTag?name=hemu">Test Tag</a>
 
 </body>
 </html>
