@@ -87,8 +87,8 @@
 		request.setAttribute("persons", persons);
 	%>
 	<br>
-	<s:iterator value="#request.persons">
-		${name } - ${age } <br>
+	<s:iterator value="#request.persons" status="status">
+		index:${status.index }-count:${status.count }: ${name } - ${age } <br>
 	</s:iterator>
 	<br>
 	<br>
