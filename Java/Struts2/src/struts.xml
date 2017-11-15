@@ -47,14 +47,10 @@
 		<action name="user-logout" class="com.hemu.test.UserAction" method="logout">
 			<result name="logout-success">/login.jsp</result>
 		</action>
-
-
-
 	</package>
 
 
 	<package name="tongpeifu" extends="struts-default">
-
 		<action name="testResult" class="com.hemu.test.TestResultAction">
 			<result name="success">/success.jsp</result>
 			<result name="login">/login.jsp</result>
@@ -103,6 +99,21 @@
 	<package name="TAG" extends="struts-default">
 		<action name="TestTag" class="com.hemu.OGNL.ProductOGNL" method="testTag">
 			<result>/tag/common-tag.jsp</result>
+		</action>
+
+		<action name="save" class="com.hemu.tag.UserAction" method="save" >
+			<result name="input">/tag/form-tag.jsp</result>
+		</action>
+	</package>
+
+	<package name="CRUD" extends="struts-default">
+		<action name="emp-*" class="com.hemu.OGNL.ProductOGNL" method="testTag">
+			<result>/tag/common-tag.jsp</result>
+		</action>
+
+		<action name="emp-*" class="com.hemu.crud.EmployeeAction" method="{1}" >
+			<result name="{1}">/crud/emp-{1}.jsp</result>
+			<result name="sucdess" type="redirectAction">emp-list</result>
 		</action>
 	</package>
 

@@ -33,16 +33,18 @@
 	<br>
 
 	<a href="UserAction-save.do">save</a>
-	<br><br>
+	<br>
 	<a href="UserAction-update.do">update</a>
-	<br><br>
+	<br>
 	<a href="UserAction-delete.do">delete</a>
-	<br><br>
+	<br>
 	<a href="UserAction-query">query</a>
 	<br><br>
 	<a href="testDynamicMethodInvocation">Test DynamicMethodInvocation</a>
 	<br>
 	<a href="TestTag?name=hemu">Test Tag</a>
+	<br>
+	<a href="emp-list.do">List All Employees(CRUD)</a>
 
 </body>
 </html>

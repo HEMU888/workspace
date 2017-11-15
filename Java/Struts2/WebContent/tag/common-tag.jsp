@@ -1,4 +1,6 @@
+<%@page import="com.hemu.test.PersonComparator"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.hemu.test.Person"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -77,10 +79,10 @@
 
 	<%
 		List<Person> persons = new ArrayList<Person>();
-		persons.add(new Person("AA", 10));
-		persons.add(new Person("BB", 20));
-		persons.add(new Person("CC", 30));
 		persons.add(new Person("DD", 40));
+		persons.add(new Person("AA", 10));
+		persons.add(new Person("CC", 30));
+		persons.add(new Person("BB", 20));
 
 		request.setAttribute("persons", persons);
 	%>
@@ -89,9 +91,29 @@
 		index:${status.index }-count:${status.count }: ${name } - ${age } <br>
 	</s:iterator>
 	<br>
+	s:sor 可以对集合中的元素进行排序
 	<br>
+	<%
+		PersonComparator pc = new PersonComparator();
+		request.setAttribute("comparator", pc);
+	%>
+	<s:sort comparator="#request.comparator" source="#request.persons" var="persons2"></s:sort>
+	<s:iterator value="#attr.persons2">
+		index:${status.index }-count:${status.count }: ${name } - ${age } <br>
+	</s:iterator>
 	<br>
+	s:date 可以对date进行排版
 	<br>
+	<%
+		session.setAttribute("date", new Date());
+	%>
+	<s:date name="#session.date" format="yyyy-MM-dd hh:mm:ss" var="date2"/>
+	Date：${date2 }
+	<br>
+	<s:iterator value="#attr.persons" status="status">
+	<!-- 可以使用%{}把属性包装起来，进行OGNL强制解析  -->
+		<s:a href="getPerson.action?name=%{name}">${name }<br></s:a>
+	</s:iterator>
 
 </body>
 </html>

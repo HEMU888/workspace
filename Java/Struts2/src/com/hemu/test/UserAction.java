@@ -59,8 +59,8 @@ public class UserAction implements SessionAware,ApplicationAware {
 		// TODO 自動生成されたメソッド・スタブ
 		this.application = arg0;
 	}
-	
-	
+
+
 	public String save() {
 		System.out.println("save");
 		return "success-save";
