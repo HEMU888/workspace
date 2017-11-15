@@ -24,14 +24,29 @@ public class EmployeeAction implements RequestAware, ModelDriven<Employee> {
 
 	public String delete(){
 		dao.delete(employee.getEmployeeId());
-		return "sucdess";
+		return "success";
 	}
 
 	public String save(){
 
 		dao.save(employee);
 
-		return "sucdess";
+		return "success";
+	}
+
+	public String edit(){
+		Employee emp = dao.get(employee.getEmployeeId());
+
+		employee.setFirstName(emp.getFirstName());
+		employee.setLastName(emp.getLastName());
+		employee.setEmail(emp.getEmail());
+
+		return "edit";
+	}
+
+	public String update(){
+		dao.update(employee);
+		return "success";
 	}
 
 

@@ -113,7 +113,7 @@
 
 		<action name="emp-*" class="com.hemu.crud.EmployeeAction" method="{1}" >
 			<result name="{1}">/crud/emp-{1}.jsp</result>
-			<result name="sucdess" type="redirectAction">emp-list</result>
+			<result name="success" type="redirectAction">emp-list</result>
 		</action>
 	</package>
 
