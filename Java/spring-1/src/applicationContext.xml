@@ -1,9 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
 	<bean id="helloworld" class="com.hemu.spring.HelloWorld">
 		<property name="name" value = "spring"></property>
 	</bean>
+
+	<!-- 通过构造方法配置 bean的属性 -->
+	<bean id="car" class="com.hemu.spring.Car" >
+		<constructor-arg value="Audi" index="0" ></constructor-arg>
+		<constructor-arg value="ShangHai" index="1" ></constructor-arg>
+		<constructor-arg value="300000" type="double" ></constructor-arg>
+	</bean>
+
+	<!-- 使用构造器注入属性值可以指定参数的位置和参数的类型，区分重载的构造器！ -->
+	<bean id="car2" class="com.hemu.spring.Car">
+		<constructor-arg value="BMW" type="java.lang.String"></constructor-arg>
+		<!-- 如果字面值包含特殊字符可以用<![CDATA[]]>包裹起来 -->
+		<constructor-arg type="java.lang.String">
+			<!-- 属性值也可以用value子节点配置 -->
+			<value><![CDATA[<ShangHai^>]]></value>
+		</constructor-arg>
+		<constructor-arg value="240" type="int"></constructor-arg>
+	</bean>
+
+	<bean id="person" class="com.hemu.spring.Person">
+		<property name="name" value="Tom"></property>
+		<property name="age" value="24"></property>
+		<!-- 可以使用property的ref属性建立bean的引用关系 -->
+		<property name="car" ref="car2"></property>
+
+		<!--
+		<property name="car" >
+			<ref bean="car2" />
+		</property>
+		 -->
+		<!--  内部bean，不能被外部引用
+		<property name="car">
+			<bean class="com.hemu.spring.Car">
+				<constructor-arg value="Ford" index="0" ></constructor-arg>
+				<constructor-arg value="ChangAn" index="1" ></constructor-arg>
+				<constructor-arg value="200000" type="double" ></constructor-arg>
+			</bean>
+		</property>
+		-->
+	</bean>
+
+	<bean id="person2" class="com.hemu.spring.Person">
+		<constructor-arg value="Jeff"></constructor-arg>
+		<constructor-arg value="30"></constructor-arg>
+		<constructor-arg ref="car"></constructor-arg>
+		<!-- 位级联属性赋值 -->
+		<property name="car.maxSpeed" value="500"></property>
+		<constructor-arg><null /></constructor-arg>
+		<!-- 测试赋值null
+		<constructor-arg ><null/></constructor-arg>
+		-->
+	</bean>
+
+	<bean id="person3" class="com.hemu.spring.Person">
+		<constructor-arg value="Hemu"></constructor-arg>
+		<constructor-arg value="28"></constructor-arg>
+		<constructor-arg><null /></constructor-arg>
+		<!-- 测试集合属性-->
+		<constructor-arg >
+			<list>
+				<ref bean="car"/>
+				<ref bean="car2"/>
+				<bean class="com.hemu.spring.Car">
+				<constructor-arg value="Ford" index="0" ></constructor-arg>
+				<constructor-arg value="ChangAn" index="1" ></constructor-arg>
+				<constructor-arg value="200000" type="double" ></constructor-arg>
+			</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- 配置Map属性值 -->
+	<bean id="newPerson" class="com.hemu.spring.NewPerson">
+		<property name="name" value="Rose"></property>
+		<property name="age" value="23"></property>
+		<property name="cars">
+			<map>
+				<entry key="AA" value-ref="car"></entry>
+				<entry key="BB" value-ref="car2" ></entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- 配置单例的集合bean，以供多个bean惊醒引用,需要到入util命名空间 -->
+	<util:list id="cars">
+		<ref bean="car" />
+		<ref bean="car2" />
+	</util:list>
+
+	<bean id="person4" class="com.hemu.spring.Person">
+		<property name="name" value="collection"></property>
+		<property name="age" value="99"></property>
+		<property name="cars" ref="cars"></property>
+	</bean>
+
+	<!-- 通过p命名空间位bean的属性赋值，需要先到入p命名空间 -->
+	<bean id="person5" class="com.hemu.spring.Person" p:age="33" p:name="Queen" p:cars-ref="cars" p:car-ref="car"></bean>
+
+
 </beans>
